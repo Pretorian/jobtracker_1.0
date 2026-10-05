@@ -1,0 +1,109 @@
+MASTER RESUME TEMPLATE INSTRUCTIONS
+====================================
+
+Your master resume template should be a Word document (.docx) saved as:
+  master-resume-template.docx
+
+This file will be used to automatically generate tailored resumes for each job.
+
+TEMPLATE VARIABLES
+==================
+
+You can use these variables anywhere in your resume. They will be replaced
+automatically when generating a resume for a specific job:
+
+{targetCompany}    - The company name (e.g., "Google", "Microsoft")
+{targetRole}       - The job title (e.g., "Senior Software Engineer")
+{targetLocation}   - The location (e.g., "Remote", "San Francisco, CA")
+{skills}           - Key skills for the job, comma-separated
+{date}             - Current date in "Month DD, YYYY" format
+
+EXAMPLE USAGE
+=============
+
+Cover Letter Section:
+---------------------
+Dear Hiring Manager,
+
+I am excited to apply for the {targetRole} position at {targetCompany}.
+With over 12 years of experience in software engineering and platform
+leadership, I am confident I can make an immediate impact on your team
+in {targetLocation}.
+
+
+Objective Statement:
+-------------------
+Seeking a {targetRole} role at {targetCompany} where I can leverage my
+expertise in {skills} to drive innovation and technical excellence.
+
+
+Header:
+-------
+John Doe
+Senior Engineering Leader
+Application for {targetRole} at {targetCompany}
+{date}
+
+
+TIPS
+====
+
+1. Keep your core content (experience, education) as-is
+2. Use variables in:
+   - Cover letter
+   - Objective/summary
+   - Header/footer
+   - Any customizable sections
+
+3. Test your template by:
+   - Adding a job in the tracker
+   - Clicking "Generate Resume"
+   - Checking if variables were replaced correctly
+
+4. You can have multiple versions if needed:
+   - master-resume-template.docx (main)
+   - master-resume-technical.docx (for technical roles)
+   - master-resume-leadership.docx (for management roles)
+
+5. To use alternate templates:
+   - Edit server/resume/generator.js
+   - Change the templatePath based on job type/company
+
+EXAMPLE TEMPLATE
+================
+
+Create a Word document with something like this:
+
+-------------------------------------------
+
+[YOUR NAME]
+[Contact Information]
+
+Application for {targetRole} at {targetCompany}
+{date}
+
+PROFESSIONAL SUMMARY
+I am a seasoned engineering leader with 12+ years of experience seeking
+to join {targetCompany} as a {targetRole}. My expertise in {skills}
+aligns perfectly with your team's needs.
+
+EXPERIENCE
+[Your work history - keep this the same]
+
+EDUCATION
+[Your education - keep this the same]
+
+SKILLS
+• {skills}
+• [Your other skills]
+
+-------------------------------------------
+
+Save this as master-resume-template.docx in the data/ folder.
+
+Now when you generate a resume for a "Senior Backend Engineer" position
+at "Stripe", it will automatically fill in:
+- {targetCompany} → Stripe
+- {targetRole} → Senior Backend Engineer
+- {skills} → Python, REST APIs, PostgreSQL, Kubernetes, etc.
+- {date} → March 9, 2026

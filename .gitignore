@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+dist-ssr/
+
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+*.local
+
+# Database
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Generated resumes and cover letters
+public/resumes/
+
+# Personal resume data (see data/README.md)
+data/master-resume-template*.docx
+data/master-content.json
+data/master_resume.txt
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+*.suo
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/
