@@ -24,11 +24,17 @@ ok "Node $(node --version)"
 
 # .env present (server exits without it)
 if [ ! -f .env ]; then
-  cp .env.example .env
-  fail "No .env found — created one from .env.example. Set ANTHROPIC_API_KEY and PORT=4001, then rerun."
+  # Comment out the placeholder key so ANTHROPIC_API_KEY can come from the shell
+  sed 's/^ANTHROPIC_API_KEY=/# ANTHROPIC_API_KEY=/' .env.example > .env
+  warn "No .env found — created one from .env.example"
 fi
-grep -qE '^ANTHROPIC_API_KEY=.+' .env && ! grep -q 'your-api-key-here' .env \
-  || fail "ANTHROPIC_API_KEY is not set in .env"
+# API key: the shell environment wins (dotenv never overrides it), else .env
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+  ok "ANTHROPIC_API_KEY found in environment"
+else
+  grep -qE '^ANTHROPIC_API_KEY=.+' .env && ! grep -q 'your-api-key-here' .env \
+    || fail "ANTHROPIC_API_KEY is not set — export it in your shell or add it to .env"
+fi
 # Session secret: generate one on first run so logins survive restarts
 if ! grep -qE '^SESSION_SECRET=.+' .env; then
   SECRET=$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")
@@ -52,7 +58,8 @@ ok "Dependencies up to date"
 if [ ! -f data/jobs.db ]; then
   warn "No database found — running db:init..."
   npm run db:init
-  npm run db:auth   # creates the admin user and prints its password once
+  npm run db:auth        # creates the admin user and prints its password once
+  npm run db:multi-user  # adds jobs.userId so per-user job queries work
 fi
 ok "Database present"
 

@@ -1,6 +1,13 @@
+/*!
+ * JobTracker — AI-Powered Job Application Tracker
+ * Copyright (c) 2026 AM <andres@lapa.io>
+ * See NOTICE for attribution terms.
+ */
+
 // Load environment variables from .env file
 require('dotenv').config()
 
+const buildInfo = require('./build-info')
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
@@ -13,6 +20,7 @@ const jobsRouter = require('./routes/jobs')
 const resumeRouter = require('./routes/resume')
 const searchRouter = require('./routes/search')
 const authRouter = require('./routes/auth')
+const telemetryRouter = require('./routes/telemetry')
 const { requireAuth } = require('./middleware/auth')
 
 const app = express()
@@ -23,6 +31,7 @@ const PORT = process.env.PORT || 3000
 // ═══════════════════════════════════════════════════════════════════════════════
 
 console.log('\n' + '═'.repeat(70))
+console.log(`🔏 ${buildInfo.signatureLine()}`)
 console.log('🔍 VALIDATING ENVIRONMENT CONFIGURATION')
 console.log('═'.repeat(70))
 
@@ -203,6 +212,10 @@ app.use('/api/', generalLimiter)
 
 // Public routes (no authentication required)
 app.use('/api/auth', authRouter)
+
+// Telemetry: consent + event ingestion are public (needed before login and
+// gated by opt-in); the /summary endpoint inside enforces auth itself.
+app.use('/api/telemetry', telemetryRouter)
 
 // Health check endpoint - minimal information disclosure (public)
 app.get('/api/health', (req, res) => {

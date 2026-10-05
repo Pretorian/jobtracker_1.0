@@ -145,7 +145,7 @@ export default function Home() {
               aria-label="version 2.0.0 beta 4"
               style={{ fontSize: 10, color: '#94A3B8', fontWeight: 600, fontFamily: "'DM Mono', monospace", marginLeft: 6 }}
             >
-              v2.0.0-beta.4
+              v1.0.0-beta.7
             </span>
           </a>
 

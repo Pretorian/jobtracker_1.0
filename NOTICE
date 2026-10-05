@@ -1,0 +1,16 @@
+JobTracker — AI-Powered Job Application Tracker
+Copyright (c) 2026 AM <andres@lapa.io>
+
+This software and its source code are the work of the above author.
+
+Attribution
+-----------
+If you redistribute this software or substantial portions of its source,
+you must retain this NOTICE file and the copyright headers in the source
+files. Retaining them is a condition of use.
+
+Provenance markers
+------------------
+The source contains open, documented authorship fingerprints (see
+server/build-info.js). They exist to establish origin and are not to be
+removed. Their presence in another codebase is evidence of copying.
